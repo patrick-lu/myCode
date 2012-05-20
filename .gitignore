@@ -1,0 +1,4 @@
+.scrapy/
+btimgs/
+autobt/*.pyc
+autobt/spiders/*.pyc
