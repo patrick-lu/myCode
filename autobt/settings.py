@@ -16,4 +16,4 @@ USER_AGENT = "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.13
 
 #ITEM_PIPELINES = ['scrapy.contrib.pipeline.images.ImagesPipeline']
 ITEM_PIPELINES = ['autobt.imagedown.MyImagePipeline']
-IMAGES_STORE = '/home/lup/work/crawl/autobt/autobt'
+IMAGES_STORE = './btimgs/'
