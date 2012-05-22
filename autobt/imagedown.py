@@ -18,4 +18,5 @@ class MyImagePipeline(ImagesPipeline):
 			threads_db.save(tt);
 		else:
 			threads_db.remove({"url":item["name"]})
+		item["images"]=images;
 		return item

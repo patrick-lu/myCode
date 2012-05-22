@@ -11,3 +11,6 @@ class AutobtItem(Item):
     name = Field()
     image_urls = Field()
     images = Field()
+    links = Field()
+    attach = Field()
+    btfile = Field()

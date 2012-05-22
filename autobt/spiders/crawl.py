@@ -10,6 +10,7 @@ from pymongo import Connection
 import urlparse
 import datetime
 
+from autobt.utils import parse_bt
 
 from time import sleep
 
@@ -67,11 +68,16 @@ class CrawlSpider(CrawlSpider):
         if(len(imgs)==0):
 	    self.threads_db.remove({"url":response.url})
             return;
+	links = content.select('.//a/@href').extract();
+        if(len(links)==0):
+	    self.threads_db.remove({"url":response.url})
+            return;
         #items = [];
         #for img in imgs:
         item = AutobtItem()
 	item['name'] = response.url
         item['image_urls'] = imgs 
+	item['links']=links
         #inspect_response(response)
 
 	all=content.extract();
@@ -105,7 +111,11 @@ class CrawlSpider(CrawlSpider):
 	tt["content"]=con;
 	tt['raw_content']=all;
 	self.threads_db.save(tt);
-        return item;
+	
+	if not item['links']:
+		return item
+        return parse_bt(item);
+
 
     def parse(self, response):
 	self.log('hi from %s'% response.url);
